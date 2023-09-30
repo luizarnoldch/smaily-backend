@@ -1,7 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"log"
+
+	"github.com/luizarnoldch/mesapara2_backend/app"
+)
 
 func main() {
-	fmt.Println("Hola mundo")
+	log.Println("Server Starting")
+	app.Start()
+	log.Println("Server Finished")
 }
