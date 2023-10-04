@@ -1,13 +1,13 @@
 package main
 
 import (
-	"log"
+	log "github.com/gofiber/fiber/v2/log"
 
 	"github.com/luizarnoldch/mesapara2_backend/app"
 )
 
 func main() {
-	log.Println("Server Starting")
+	log.Info("Server Starting")
 	app.Start()
-	log.Println("Server Finished")
+	log.Info("Server Finished")
 }

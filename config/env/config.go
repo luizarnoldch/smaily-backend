@@ -7,24 +7,24 @@ type (
 	}
 
 	MICRO struct {
-		// DB DB
+		DB DB
 		API API
 	}
 
-	// DB struct {
-	// 	Psql PsqlEnv
-	// }
+	DB struct {
+		PSQL PSQL
+	}
 
 	API struct {
 		HOST string
 		PORT string
 	}
 
-	// PsqlEnv struct {
-	// 	Host string
-	// 	Port string
-	// 	User string
-	// 	Name string
-	// 	Pass string
-	// }
+	PSQL struct {
+		HOST string
+		PORT string
+		USER string
+		PASS string
+		SCHEMA string
+	}
 )

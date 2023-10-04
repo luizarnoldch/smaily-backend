@@ -2,32 +2,40 @@ package env
 
 import (
 	"fmt"
-	"log"
+	log "github.com/gofiber/fiber/v2/log"
 	"os"
 
 	"github.com/joho/godotenv"
 )
 
+// sanityCheck checks if all required environment variables are defined
 func sanityCheck() {
-	envProps := []string{
+	requiredEnvVars := []string{
 		"API_HOST",
 		"API_PORT",
+		"HOST",
+		"PORT",
+		"USER",
+		"PASS",
+		"SCHEMA",
 	}
 
-	for _, v := range envProps {
-		if os.Getenv(v) == "" {
-			log.Fatal(fmt.Sprintf("Environment variable %s not defined. Terminating application...", v))
+	for _, envVar := range requiredEnvVars {
+		if value := os.Getenv(envVar); value == "" {
+			log.Fatalf("Environment variable %s not defined. Terminating application...", envVar)
 		}
 	}
 }
 
+// LoadConfig loads configuration values from a file using godotenv package
 func LoadConfig(filePath string) (*CONFIG, error) {
 	err := godotenv.Load(filePath)
-	sanityCheck()
 	if err != nil {
-		log.Fatal("Erorr loading .env")
+		log.Fatalf("Error loading .env: %v", err)
 		return nil, fmt.Errorf("error loading .env: %v", err)
 	}
+
+	sanityCheck()
 
 	return &CONFIG{
 		MICRO: MICRO{
