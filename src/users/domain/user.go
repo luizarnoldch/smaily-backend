@@ -1,33 +1,29 @@
 package domain
 
 type UserRequest struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
-}
-
-func (request *UserRequest) ToUser() User {
-    return User{
-        Email:    request.Email,
-        Password: request.Password,
-    }
+	ClienteEmail    string `json:"cliente_email"`
+	ClientePassword string `json:"cliente_password"`
 }
 
 type User struct {
-	ID string `json:"id,omitempty"`
-	Email    string `db:"email"`
-	Password string `db:"password"`
+	ClientID         int    `db:"cliente_id"`
+	ClientName       string `db:"cliente_nombre"`
+	ClientDirection  string `db:"cliente_direccion"`
+	ClienteEmail     string `db:"cliente_email"`
+	ClientePassword  string `db:"cliente_password"`
+	ClienteTelephone string `db:"cliente_telefono"`
 }
 
 func (user *User) ToUserResponse() UserResponse {
 	return UserResponse{
-		ID:       user.ID,
-		Email:    user.Email,
-		Password: user.Password,
+		ClientID:     user.ClientID,
+		ClienteEmail: user.ClienteEmail,
+		ClientName:   user.ClientName,
 	}
 }
 
 type UserResponse struct {
-	ID string `json:"id"`
-	Email    string `json:"email"`
-	Password string `json:"password"`
+	ClientID     int    `json:"cliente_id"`
+	ClienteEmail string `json:"cliente_email"`
+	ClientName   string `db:"cliente_nombre"`
 }

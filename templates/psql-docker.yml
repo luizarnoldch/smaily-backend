@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  db_backend:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=${USER}
+      - POSTGRES_PASSWORD=${PASS}
+      - POSTGRES_DB=${SCHEMA}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "${PORT}:5432"
+volumes:
+  pgdata:

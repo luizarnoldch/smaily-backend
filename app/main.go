@@ -16,7 +16,6 @@ func GreetHandler(c *fiber.Ctx) error {
 	return c.SendString("Hello this is the API for Smaily")
 }
 
-
 // Start initializes the application and starts the server.
 //
 // It loads the configuration from the .env file and sets up the database connection.
@@ -41,8 +40,11 @@ func Start() {
 	api := app.Group("/api")
 	api.Get("/", GreetHandler)
 
-	api_users := api.Group("/users")
+	api_users := api.Group("/user")
 	api_users.Get("/", userController.GetAllUsers)
+	api_users.Get("/:id", userController.FindUserByID)
+	api_users.Put("/", userController.UpdateUserByID)
+	api_users.Delete("/:id", userController.DeleteUserByID)
 
 	URL_API := fmt.Sprint(config.MICRO.API.HOST,":",config.MICRO.API.PORT)
 	app.Listen(URL_API)

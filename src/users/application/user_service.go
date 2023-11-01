@@ -6,4 +6,7 @@ import (
 
 type UserService interface {
 	FindAllUsers() ([]domain.UserResponse, error)
+	FindUserByID() (domain.UserResponse, error)
+	UpdateUserByID() (domain.UserResponse, error)
+	DeleteUserByID() ([]byte, error)
 }
